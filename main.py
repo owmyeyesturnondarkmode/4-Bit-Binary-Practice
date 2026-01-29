@@ -27,10 +27,10 @@ def practice():
         elapsed = end - start
         times.append(elapsed)
         if given_awnser.lower() == awnser:
-            print("\nCorrect!")
+            print("\n\033[32mCorrect!\033[0m")
             correct += 1
         else:
-            print(f"\nIncorrect! The correct awnser was {awnser.upper()}.")
+            print(f"\n\033[31mIncorrect!\033[0m \nThe correct awnser was {awnser.upper()}.")
         count += 1
         print(f"Time: {elapsed:.2f}s")
         input("\nPress Enter to continue...")
