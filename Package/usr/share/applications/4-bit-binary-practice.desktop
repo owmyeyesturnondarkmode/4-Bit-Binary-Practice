@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=4 Bit Binary to Hexidecimal Practice
+Comment=A practice tool for learning how to fluently convert 4 bit binary into hexidecimal.
+Exec=/usr/bin/4-bit-binary-practice.py
+Icon=4bitbintohex.png
+Terminal=true
+Type=Application
+Categories=Education;
