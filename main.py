@@ -32,6 +32,8 @@ while True:
                     given_answer = input("\nHex: ").strip()
                 except KeyboardInterrupt:
                     exit(0)
+                except EOFError:
+                    print("\n\033[31mInvalid input!\033[0m\nPlease enter a single hex number.]]")
                 if len(given_answer) != 1 or given_answer.lower() not in answers:
                     print("\n\033[31mInvalid input!\033[0m\nPlease enter a single hex number.]]")
                 else:
