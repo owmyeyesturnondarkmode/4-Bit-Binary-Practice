@@ -4,6 +4,7 @@ import random
 import time
 import os
 
+copyright = "2026 owmyeyesturnondarkmode"
 times = []
 correct = 0
 random.seed(os.urandom(16))
