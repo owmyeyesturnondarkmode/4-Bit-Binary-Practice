@@ -33,7 +33,7 @@ while True:
                 except KeyboardInterrupt:
                     exit(0)
                 except EOFError:
-                    print("\n\033[31mInvalid input!\033[0m\nPlease enter a single hex number.]]")
+                    exit(1)
                 if len(given_answer) != 1 or given_answer.lower() not in answers:
                     print("\n\033[31mInvalid input!\033[0m\nPlease enter a single hex number.]]")
                 else:
@@ -53,7 +53,12 @@ while True:
         average_time = sum(times) / len(times)
         print(f"Practice complete!\nCorrect: {correct}/20\nAverage Time: {average_time:.2f}s")
         while True:
-            ans = input("\nPractice again? (y/n): ").lower()
+            try:
+                ans = input("\nPractice again? (y/n): ").lower()
+            except KeyboardInterrupt:
+                exit(0)
+            except EOFError:
+                exit(1)
             if ans == 'y':
                 times = []
                 correct = 0
