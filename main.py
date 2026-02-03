@@ -14,7 +14,12 @@ def screen_clear():
           "\n------------------------------------\n")
 
 screen_clear()
-input("Press Enter to start practice...")
+try:
+    input("Press Enter to start practice...")
+except KeyboardInterrupt:
+    exit(0)
+except EOFError:
+    exit(1)
 
 while True:
     while True:
