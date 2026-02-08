@@ -158,6 +158,9 @@ while True:
         print("Resetting tutor data...")
         tutor_dir = os.path.expanduser('~/.local/share/binarypractice')
         tutor_marker = f"{hashlib.sha256(os.getlogin().encode()).hexdigest()}"
-        os.remove(f'{tutor_dir}/{tutor_marker}')
+        try:
+            os.remove(f'{tutor_dir}/{tutor_marker}')
+        except FileNotFoundError:
+            print("No data to reset.")
         print("Tutor data reset.")
-        input
+        input()
