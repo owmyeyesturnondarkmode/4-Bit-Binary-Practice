@@ -69,7 +69,7 @@ def practice():
 
 def tutor():
     screen_clear()
-    if not os.path.exists(f"/var/lib/binarypractice/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"):
+    if not os.path.exists(f"{os.path.expanduser('~/.local/share/binarypractice')}/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"):
         print("Because this is your first time using the tutor, would you like for\nme to show you how to convert binary to decimal? (y/n) ")
         while True:
             choice = input("\n").strip().lower()
@@ -101,7 +101,12 @@ def tutor():
             print("So, 1011 in binary is 11 in decimal.")
             input()
             print("But, commonly in computers, we use somthing called hexadecimal.")
-            os.system(f"touch /var/lib/binarypractice/{hashlib.sha256(os.getlogin().encode()).hexdigest()}")
+            input()
+            tutor_dir = os.path.expanduser('~/.local/share/binarypractice')
+            os.makedirs(tutor_dir, exist_ok=True)
+            tutor_marker = f"{tutor_dir}/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"
+            with open(tutor_marker, 'w') as f:
+                f.write('')
         elif choice == 'n':
             print("Okay, skipping the binary to decimal tutor.")
             input()
@@ -110,7 +115,6 @@ def tutor():
             print("Sorry, something has gone awry in the code, please restart the app.")
             while True:
                 None
-    input()
     print("Hexadecimal is a number system.")
     input()
     print("Like binary and decimal, it's another number system, but it uses 16 digits, 0-f")
@@ -148,3 +152,12 @@ while True:
         practice()
     elif choice == '2':
         tutor()
+    elif choice == '3':
+        exit(0)
+    elif choice == 'reset':
+        print("Resetting tutor data...")
+        tutor_dir = os.path.expanduser('~/.local/share/binarypractice')
+        tutor_marker = f"{hashlib.sha256(os.getlogin().encode()).hexdigest()}"
+        os.remove(f'{tutor_dir}/{tutor_marker}')
+        print("Tutor data reset.")
+        input
