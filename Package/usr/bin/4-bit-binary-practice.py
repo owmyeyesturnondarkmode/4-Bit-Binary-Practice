@@ -70,7 +70,7 @@ def practice():
 def tutor():
     screen_clear()
     if not os.path.exists(f"/var/lib/binarypractice/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"):
-        print("Because this is your first time using the tutor, would you like for\nme to show you how to convert binary to decimal? (y/n) ").strip().lower()
+        print("Because this is your first time using the tutor, would you like for\nme to show you how to convert binary to decimal? (y/n) ")
         while True:
             choice = input("\n").strip().lower()
             if choice == 'y':
@@ -95,13 +95,13 @@ def tutor():
             print("Example:\n"
                   "1  0  1  1\n"
                   "^  ^  ^  ^\n"
-                  "8  0  2  1\n"
+                  "8  0  2  1\n\n"
                   "8+0+2+1=11")
             input()
             print("So, 1011 in binary is 11 in decimal.")
             input()
             print("But, commonly in computers, we use somthing called hexadecimal.")
-            os.system(f"mkdir -p /var/lib/binarypractice && touch /var/lib/binarypractice/{hashlib.sha256(os.getlogin().encode()).hexdigest()}")
+            os.system(f"touch /var/lib/binarypractice/{hashlib.sha256(os.getlogin().encode()).hexdigest()}")
         elif choice == 'n':
             print("Okay, skipping the binary to decimal tutor.")
             input()
@@ -118,7 +118,7 @@ def tutor():
     print("You count like this:\n"
             "0 1 2 3 4 5 6 7 8 9 a b c d e f")
     input()
-    print("And why we use hexadecimal is because it cleanly converts from binary, since 1 hex digit perfectly represents 4 binary digits.")
+    print("And why we use hexadecimal is because it cleanly converts from binary,\nsince 1 hex digit perfectly represents 4 binary digits.")
     input()
     print("This app will teach you how to do that.")
     input()
@@ -139,7 +139,7 @@ while True:
         choice = input("Main Menu"
                     "\n1. Fluency Practice"
                     "\n2. Tutor"
-                    "\n3. Exit\n").strip()
+                    "\n3. Exit\n\n").strip()
     except KeyboardInterrupt:
         exit(0)
     except EOFError:
