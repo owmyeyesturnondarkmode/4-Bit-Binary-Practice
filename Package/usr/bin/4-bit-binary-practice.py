@@ -15,6 +15,7 @@ def screen_clear():
           "\n------------------------------------\n")
 
 def practice():
+    global times,correct
     while True:
         while True:
             count = 0
