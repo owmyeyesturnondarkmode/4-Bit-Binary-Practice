@@ -130,7 +130,8 @@ def tutor():
     input()
     print("So, 1011 in binary is B in hexadecimal.")
     input()
-    print("Eventually, you will memorize the conversions, but for now, you can use this method to convert binary to hexadecimal.")
+    print("Eventually, you will memorize the conversions, but for now, you can use this method\n"
+          "to convert binary to hexadecimal.")
     input()
     print("But if it isn't over 9, then it's just the number.")
     input()
