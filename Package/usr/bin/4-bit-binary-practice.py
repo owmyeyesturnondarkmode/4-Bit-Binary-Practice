@@ -65,7 +65,8 @@ def practice():
 def tutor():
     screen_clear()
     if not os.path.exists(f"{homedir}/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"):
-        print("Because this is your first time using the tutor, would you like for\nme to show you how to convert binary to decimal? (y/n) ")
+        print("Because this is your first time using the tutor, would you like for\n"
+              "me to show you how to convert binary to decimal? (y/n) ")
         while True:
             choice = input("\n").strip().lower()
             if choice == 'y':
