@@ -34,7 +34,7 @@ def practice():
                 while True:
                     given_answer = input("\nHex: ").strip()
                     if len(given_answer) != 1 or given_answer.lower() not in answers:
-                        print("\n\033[31mInvalid input!\033[0m\nPlease enter a single hex number.]]")
+                        print("\n\033[31mInvalid input!\033[0m\nPlease enter a single hex number.")
                     else:
                         break
                 end = time.time()
