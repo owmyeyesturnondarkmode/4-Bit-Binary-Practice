@@ -4,10 +4,14 @@ import random
 import time
 import os
 import hashlib
+from datetime import datetime
+import traceback
 
 copyright = "2026 owmyeyesturnondarkmode"
 times = []
 correct = 0
+os.makedirs(f"{os.path.expanduser('~/.local/share/binarypractice')}", exist_ok=True)
+homedir = os.path.expanduser('~/.local/share/binarypractice')
 
 def screen_clear():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -28,12 +32,7 @@ def practice():
                 print(question)
                 start = time.time()
                 while True:
-                    try:
-                        given_answer = input("\nHex: ").strip()
-                    except KeyboardInterrupt:
-                        exit(0)
-                    except EOFError:
-                        exit(1)
+                    given_answer = input("\nHex: ").strip()
                     if len(given_answer) != 1 or given_answer.lower() not in answers:
                         print("\n\033[31mInvalid input!\033[0m\nPlease enter a single hex number.]]")
                     else:
@@ -53,12 +52,7 @@ def practice():
             average_time = sum(times) / len(times)
             print(f"Practice complete!\nCorrect: {correct}/20\nAverage Time: {average_time:.2f}s")
             while True:
-                try:
-                    ans = input("\nPractice again? (y/n): ").lower()
-                except KeyboardInterrupt:
-                    exit(0)
-                except EOFError:
-                    exit(1)
+                ans = input("\nPractice again? (y/n): ").lower()
                 if ans == 'y':
                     times = []
                     correct = 0
@@ -70,7 +64,7 @@ def practice():
 
 def tutor():
     screen_clear()
-    if not os.path.exists(f"{os.path.expanduser('~/.local/share/binarypractice')}/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"):
+    if not os.path.exists(f"{homedir}/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"):
         print("Because this is your first time using the tutor, would you like for\nme to show you how to convert binary to decimal? (y/n) ")
         while True:
             choice = input("\n").strip().lower()
@@ -103,9 +97,7 @@ def tutor():
             input()
             print("But, commonly in computers, we use somthing called hexadecimal.")
             input()
-            tutor_dir = os.path.expanduser('~/.local/share/binarypractice')
-            os.makedirs(tutor_dir, exist_ok=True)
-            tutor_marker = f"{tutor_dir}/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"
+            tutor_marker = f"{homedir}/{hashlib.sha256(os.getlogin().encode()).hexdigest()}"
             with open(tutor_marker, 'w') as f:
                 f.write('')
         elif choice == 'n':
@@ -150,17 +142,46 @@ while True:
     except EOFError:
         exit(1)
     if choice == '1':
-        practice()
+        try:
+            practice()
+        except Exception as e:
+            screen_clear()
+            current = datetime.now()
+            timestamp = current.strftime('%Y-%m-%d-%H-%M-%S')
+            os.makedirs(f"{homedir}/logs/", exist_ok=True)
+            os.system(f"touch {homedir}/logs/{timestamp}")
+            with open(f"{homedir}/logs/{timestamp}", "w") as errfile:
+                    traceback_str = ''.join(traceback.format_exception_only(type(e), e))
+                    tb_str = ''.join(traceback.format_tb(e.__traceback__))
+                    full_tb = traceback_str + tb_str
+                    errfile.write(full_tb)
+            print(f"\033[031mSorry! An error has occurred.\033[0m\nThe traceback has been saved here: {homedir}/logs/{timestamp}.txt\n\nPlease report it on github and include the contents of this file here:\nhttps://github.com/owmyeyesturnondarkmode/4-Bit-Binary-Practice/issues/new")
+            while True:
+                None
     elif choice == '2':
-        tutor()
+        try:
+            tutor()
+        except Exception as e:
+            screen_clear()
+            current = datetime.now()
+            timestamp = current.strftime('%Y-%m-%d-%H-%M-%S')
+            os.makedirs(f"{homedir}/logs/", exist_ok=True)
+            os.system(f"touch {homedir}/logs/{timestamp}")
+            with open(f"{homedir}/logs/{timestamp}", "w") as errfile:
+                    traceback_str = ''.join(traceback.format_exception_only(type(e), e))
+                    tb_str = ''.join(traceback.format_tb(e.__traceback__))
+                    full_tb = traceback_str + tb_str
+                    errfile.write(full_tb)
+            print(f"\033[031mSorry! An error has occurred.\033[0m\nThe traceback has been saved here: {homedir}/logs/{timestamp}.txt\n\nPlease report it on github and include the contents of this file here:\nhttps://github.com/owmyeyesturnondarkmode/4-Bit-Binary-Practice/issues/new")
+            while True:
+                None
     elif choice == '3':
         exit(0)
     elif choice == 'reset':
         print("Resetting tutor data...")
-        tutor_dir = os.path.expanduser('~/.local/share/binarypractice')
         tutor_marker = f"{hashlib.sha256(os.getlogin().encode()).hexdigest()}"
         try:
-            os.remove(f'{tutor_dir}/{tutor_marker}')
+            os.remove(f'{homedir}/{tutor_marker}')
         except FileNotFoundError:
             print("No data to reset.")
         print("Tutor data reset.")
