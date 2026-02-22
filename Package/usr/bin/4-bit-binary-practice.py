@@ -115,13 +115,18 @@ def tutor():
     print("You count like this:\n"
             "0 1 2 3 4 5 6 7 8 9 a b c d e f")
     input()
-    print("And why we use hexadecimal is because it cleanly converts from binary,\nsince 1 hex digit perfectly represents 4 binary digits.")
+    print("And why we use hexadecimal is because it cleanly converts from binary,\n"
+          "since 1 hex digit perfectly represents 4 binary digits.")
     input()
     print("This app will teach you how to do that.")
     input()
-    print("Basically, you convert 4 binary digits to decimal, then if that\nnumber is more than 9, you count how many numbers it is over 9, and\ncount that far into the alphebet (if it's over f, then you messed up),\nand that's your awnser!")
+    print("Basically, you convert 4 binary digits to decimal, then if that\n"
+          "number is more than 9, you count how many numbers it is over 9, and\n"
+          "count that far into the alphebet (if it's over f, then you messed up),\n"
+          "and that's your awnser!")
     input()
-    print("Going off of the previous example, 1011 is 11, and 11 is 2 over 9, so you count A, B, and that's your awnser!")
+    print("Going off of the previous example, 1011 is 11, and 11 is 2 over 9, so you count A, B,\n"
+          "and that's your awnser!")
     input()
     print("So, 1011 in binary is B in hexadecimal.")
     input()
@@ -155,7 +160,10 @@ while True:
                     tb_str = ''.join(traceback.format_tb(e.__traceback__))
                     full_tb = traceback_str + tb_str
                     errfile.write(full_tb)
-            print(f"\033[031mSorry! An error has occurred.\033[0m\nThe traceback has been saved here: {homedir}/logs/{timestamp}.txt\n\nPlease report it on github and include the contents of this file here:\nhttps://github.com/owmyeyesturnondarkmode/4-Bit-Binary-Practice/issues/new")
+            print(f"\033[031mSorry! An error has occurred.\033[0m\n"
+                  "The traceback has been saved here: {homedir}/logs/{timestamp}.txt\n\n"
+                  "Please report it on github and include the contents of this file here:\n"
+                  "https://github.com/owmyeyesturnondarkmode/4-Bit-Binary-Practice/issues/new")
             while True:
                 None
     elif choice == '2':
@@ -172,7 +180,10 @@ while True:
                     tb_str = ''.join(traceback.format_tb(e.__traceback__))
                     full_tb = traceback_str + tb_str
                     errfile.write(full_tb)
-            print(f"\033[031mSorry! An error has occurred.\033[0m\nThe traceback has been saved here: {homedir}/logs/{timestamp}.txt\n\nPlease report it on github and include the contents of this file here:\nhttps://github.com/owmyeyesturnondarkmode/4-Bit-Binary-Practice/issues/new")
+            print(f"\033[031mSorry! An error has occurred.\033[0m\n"
+                  "The traceback has been saved here: {homedir}/logs/{timestamp}.txt\n\n"
+                  "Please report it on github and include the contents of this file here:\n"
+                  "https://github.com/owmyeyesturnondarkmode/4-Bit-Binary-Practice/issues/new")
             while True:
                 None
     elif choice == '3':
